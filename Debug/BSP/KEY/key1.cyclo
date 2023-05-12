@@ -1,9 +1,0 @@
-key1.h:29:7:void key1::Key_set_state(uint8_t)	1
-key1.cpp:14:1:key1::key1()	1
-key1.cpp:18:1:key1::~key1()	1
-key1.cpp:18:1:virtual key1::~key1()	1
-key1.cpp:22:1:key1::key1(uint8_t)	1
-key1.cpp:28:9:uint8_t key1::Key_toggle_state(uint8_t)	3
-key1.cpp:45:9:uint8_t key1::Key_is_pressed()	2
-key1.cpp:55:9:uint8_t key1::Key1_State(uint8_t)	4
-key1.cpp:79:6:bool key1::Key_get_state()	1

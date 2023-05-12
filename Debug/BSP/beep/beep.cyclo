@@ -1,9 +1,0 @@
-beep.hpp:36:10:uint8_t beep::Beep_get_state()	1
-beep.hpp:39:7:void beep::Beep_set_state(uint8_t)	1
-beep.hpp:45:7:void beep::Beep_set_time(uint16_t)	1
-beep.cpp:11:1:beep::beep()	1
-beep.cpp:16:1:beep::~beep()	1
-beep.cpp:16:1:virtual beep::~beep()	1
-beep.cpp:20:1:beep::beep(uint16_t)	4
-beep.cpp:38:6:void beep::Beep_on_time(uint16_t)	4
-beep.cpp:61:6:void beep::Beep_timeout_close_handle()	3

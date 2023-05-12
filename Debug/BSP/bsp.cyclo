@@ -1,3 +1,0 @@
-bsp.cpp:13:6:void bsp_init()	1
-bsp.cpp:22:6:void set_time(uint8_t)	1
-bsp.cpp:26:6:void bsp_loop()	2

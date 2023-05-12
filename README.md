@@ -1,8 +1,9 @@
 # Rosmaster
-用於控制rosu機器人的地盤程序
-+ 基于c & c++
-+ ros小车底盘
-+ stm32
+用於ros機器人的底盤控制程序
++ 基于stm32f103
++ 使用CubeIde
++ Hal庫
+
 
 ### 更新列表
 1. freeROTS

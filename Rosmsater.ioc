@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #MicroXplorer Configuration settings - do not modify
 CAD.formats=
 CAD.pinconfig=
@@ -236,4 +235,3 @@ VP_SYS_VS_Systick.Mode=SysTick
 VP_SYS_VS_Systick.Signal=SYS_VS_Systick
 board=custom
 isbadioc=false
->>>>>>> 6b96accd256eec03b2d69e808de3233ca6542d4b

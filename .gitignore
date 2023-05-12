@@ -1,11 +1,6 @@
-.settings
 .vs
 .vscode
 cmake
-Debug
-Drivers
-.cproject
-.project
 CMakeLists.txt
 CMakePresets.json
 vcpkg-configuration.json

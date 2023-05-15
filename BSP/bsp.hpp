@@ -15,6 +15,9 @@ extetrn "c"{
 	void set_time(uint8_t );
 	void bsp_loop();
 	void bsp_init();
+	void Task_Entity_LED(void);
+	void Task_Entity_BEEP(void);
+	void Task_Entity_KEY(void);
 #ifdef __cpluscplus
 };
 #endif

@@ -8,6 +8,9 @@
 #include "beep.hpp"
 #include "bsp.hpp"
 #include "key1.h"
+#include "cmsis_os.h"
+
+uint8_t task_beep_flag = 0; //按鍵控制beep狀態
 
 /* bsp初始化 */
 void bsp_init()
@@ -40,4 +43,48 @@ void bsp_loop()
 	beep.Beep_timeout_close_handle();
 	led.Led_status_handle();
 	HAL_Delay(10);
+}
+
+
+//Freertos
+
+/* led控制 */
+void Task_Entity_LED()
+{
+	while(1)
+	{
+		LED_TOGGLE();
+		osDelay(100);
+	}
+}
+
+/* Beep控制 */
+void Task_Entity_BEEP()
+{
+	while(1)
+	{
+		if(task_beep_flag == 1)
+		{
+			BEEP_ON();
+			osDelay(200);
+			BEEP_OFF();
+			osDelay(200);
+		}
+		else
+		{
+			BEEP_OFF();
+		}
+	}
+}
+
+/* Key控制 */
+void Task_Entity_KEY()
+{
+	key1 key;
+	while(1)
+	{
+		if(key.Key1_State(1) == KEY_PRESSED)
+			task_beep_flag = !task_beep_flag;
+	}
+	osDelay(10);
 }

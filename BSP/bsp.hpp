@@ -18,6 +18,7 @@ extetrn "c"{
 	void Task_Entity_LED(void);
 	void Task_Entity_BEEP(void);
 	void Task_Entity_KEY(void);
+	void Task_Entity_Usart_RX();
 #ifdef __cpluscplus
 };
 #endif

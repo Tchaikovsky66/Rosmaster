@@ -9,6 +9,7 @@
 #include "bsp_uart.h"
 #include "main.h"
 #include "usart.h"
+#include "led.hpp"
 uint8_t RxTemp = 0;
 
 void USART1_Init(void)
@@ -36,6 +37,21 @@ void USART1_Send_ArrayU8(uint8_t *BufferPtr, uint16_t Length)
     #endif
 }
 
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+	static uint8_t ch =0;
+//	HAL_UART_Receive_IT(&huart1, (uint8_t *)&ch, 1);
+	//HAL_UART_Transmit_IT(&huart1, (uint8_t *)&ch, 1);
+		if(ch == '0')
+		{
+			LED_OFF();
+		}
+		else if(ch == '1')
+		{
+			LED_ON();
+		}
+		HAL_UART_Receive_IT(&huart1, (uint8_t *)&ch, 1);
+}
 
 //#ifdef __GNUC__
 //#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)

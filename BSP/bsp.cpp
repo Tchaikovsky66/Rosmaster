@@ -26,7 +26,7 @@ void bsp_init()
 	HAL_Delay(250);
 	led(0);
 	beep(0);
-	USART1_Init();
+	//USART1_Init();
 
 }
 void set_time(uint8_t time){
@@ -68,16 +68,10 @@ void Task_Entity_BEEP()
 {
 	while(1)
 	{
-		if(task_beep_flag == 1)
-		{
-			BEEP_ON();
-			osDelay(200);
-			task_beep_flag = 0;
-		}
-		else
-		{
-			BEEP_OFF();
-		}
+		BEEP_ON();
+		osDelay(100);
+		BEEP_OFF();
+		osDelay(100);
 	}
 }
 
@@ -93,7 +87,7 @@ void Task_Entity_KEY()
 		{
 			task_beep_flag = 1;
 			USART1_Send_ArrayU8(TXbuff,sizeof(TXbuff));
-			//USART1_Send_ArrayU8(TXbuff1,5);
+			USART1_Send_ArrayU8(TXbuff,5);
 			count++;
 			printf("press:%d\n",count); //printf重定向
 		}
@@ -101,4 +95,24 @@ void Task_Entity_KEY()
 		//task_beep_flag = 0;
 	}
 	osDelay(10);
+
+}
+
+void Task_Entity_Usart_RX()
+{
+		uint8_t ch = 0;
+		HAL_UART_Receive_IT(&huart1, (uint8_t *)&ch, 1);
+//	static uint8_t ch =0;
+//	//void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart);
+//	HAL_UART_Receive(&huart1, (uint8_t *)&ch, 1, HAL_MAX_DELAY);
+//	//HAL_UART_Transmit_IT(&huart1, (uint8_t *)&ch, 1);
+//		if(ch == '0')
+//		{
+//			LED_OFF();
+//		}
+//		else if(ch == '1')
+//		{
+//			LED_ON();
+//		}
+//		osDelay(10);
 }

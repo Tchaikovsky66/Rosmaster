@@ -26,6 +26,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "bsp.hpp"
+#include "bsp_uart.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -48,7 +49,6 @@
 
 /* USER CODE END Variables */
 osThreadId defaultTaskHandle;
-osThreadId myTask_BEEPHandle;
 osThreadId myTask_KEYHandle;
 osThreadId myTask_SERIALHandle;
 
@@ -58,7 +58,6 @@ osThreadId myTask_SERIALHandle;
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void const * argument);
-void StartTask_BEEP(void const * argument);
 void StartTask_KEY(void const * argument);
 void StartTask_SERIAL(void const * argument);
 
@@ -111,10 +110,6 @@ void MX_FREERTOS_Init(void) {
   osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
-  /* definition and creation of myTask_BEEP */
-  osThreadDef(myTask_BEEP, StartTask_BEEP, osPriorityIdle, 0, 128);
-  myTask_BEEPHandle = osThreadCreate(osThread(myTask_BEEP), NULL);
-
   /* definition and creation of myTask_KEY */
   osThreadDef(myTask_KEY, StartTask_KEY, osPriorityIdle, 0, 128);
   myTask_KEYHandle = osThreadCreate(osThread(myTask_KEY), NULL);
@@ -143,29 +138,10 @@ void StartDefaultTask(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-	  Task_Entity_LED();
+	  //Task_Entity_BEEP();
     osDelay(1);
   }
   /* USER CODE END StartDefaultTask */
-}
-
-/* USER CODE BEGIN Header_StartTask_BEEP */
-/**
-* @brief Function implementing the myTask_BEEP thread.
-* @param argument: Not used
-* @retval None
-*/
-/* USER CODE END Header_StartTask_BEEP */
-void StartTask_BEEP(void const * argument)
-{
-  /* USER CODE BEGIN StartTask_BEEP */
-  /* Infinite loop */
-  for(;;)
-  {
-	  Task_Entity_BEEP();
-    osDelay(1);
-  }
-  /* USER CODE END StartTask_BEEP */
 }
 
 /* USER CODE BEGIN Header_StartTask_KEY */
@@ -198,9 +174,12 @@ void StartTask_KEY(void const * argument)
 void StartTask_SERIAL(void const * argument)
 {
   /* USER CODE BEGIN StartTask_SERIAL */
+	Task_Entity_Usart_RX();
   /* Infinite loop */
   for(;;)
   {
+	 //Task_Entity_Usart_RX();
+
     osDelay(1);
   }
   /* USER CODE END StartTask_SERIAL */

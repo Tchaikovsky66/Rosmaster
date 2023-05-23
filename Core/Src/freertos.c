@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
+#include <bsp.h>
 #include "FreeRTOS.h"
 #include "task.h"
 #include "main.h"
@@ -25,8 +26,6 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "bsp.hpp"
-#include "bsp_uart.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -138,7 +137,8 @@ void StartDefaultTask(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-	  //Task_Entity_BEEP();
+	  Task_Entity_MPU();
+
     osDelay(1);
   }
   /* USER CODE END StartDefaultTask */
@@ -174,11 +174,11 @@ void StartTask_KEY(void const * argument)
 void StartTask_SERIAL(void const * argument)
 {
   /* USER CODE BEGIN StartTask_SERIAL */
-	Task_Entity_Usart_RX();
+	//Task_Entity_Usart_RX();
   /* Infinite loop */
   for(;;)
   {
-	 //Task_Entity_Usart_RX();
+	 Task_Entity_Usart_RX();
 
     osDelay(1);
   }

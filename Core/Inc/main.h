@@ -31,7 +31,7 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "bsp.hpp"
+#include <bsp.h>
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -61,6 +61,12 @@ void Error_Handler(void);
 #define LED_GPIO_Port GPIOC
 #define BEEP_Pin GPIO_PIN_5
 #define BEEP_GPIO_Port GPIOC
+#define MPU_SCL_Pin GPIO_PIN_13
+#define MPU_SCL_GPIO_Port GPIOB
+#define MPU_AD0_Pin GPIO_PIN_14
+#define MPU_AD0_GPIO_Port GPIOB
+#define MPU_SDA_Pin GPIO_PIN_15
+#define MPU_SDA_GPIO_Port GPIOB
 #define KEY1_Pin GPIO_PIN_2
 #define KEY1_GPIO_Port GPIOD
 

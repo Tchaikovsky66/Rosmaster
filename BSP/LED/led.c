@@ -6,18 +6,9 @@
  */
 
 
-#include "led.hpp"
+#include "led.h"
 
-led::led(){
-
-
-}
-
-led::~led(){
-
-}
-
-led::led(uint8_t status)
+void led(uint8_t status)
 {
 	if(status == 0)
 	{
@@ -28,7 +19,7 @@ led::led(uint8_t status)
 		LED_ON();
 	}
 }
-void led::Led_status_handle()
+void Led_status_handle()
 {
 	static uint16_t count;
 	count++;

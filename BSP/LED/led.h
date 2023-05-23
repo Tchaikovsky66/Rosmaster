@@ -13,14 +13,10 @@
 #define LED_OFF()        HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET)
 #define LED_TOGGLE()     HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin)
 
-class led{
-public:
-	led();
-	~led();
-	led(uint8_t status);
-	void Led_status_handle();
 
-};
+
+void led(uint8_t status);
+void Led_status_handle();
 
 
 

@@ -41,7 +41,6 @@ void USART1_Send_ArrayU8(uint8_t *BufferPtr, uint16_t Length)
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
 	static uint8_t ch =0;
-//	HAL_UART_Receive_IT(&huart1, (uint8_t *)&ch, 1);
 	//HAL_UART_Transmit_IT(&huart1, (uint8_t *)&ch, 1);
 		if(ch == '0')
 		{

@@ -309,6 +309,7 @@ void MPU9250_Read_Data_Handle(void)
 		printf("gyro:%d, %d, %d\n", gyrox, gyroy, gyroz);
 		printf("mag:%d, %d, %d\n", magx, magy, magz);
 	}
+	HAL_Delay(100);
 }
 
 

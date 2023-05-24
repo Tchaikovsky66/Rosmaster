@@ -19,7 +19,6 @@
 #include "LED/led.h"
 #include "mpu9250.h"
 
-uint8_t task_beep_flag = 0; //按鍵控制beep狀態
 
 /* bsp初始化 */
 void bsp_init()
@@ -97,7 +96,10 @@ void Task_Entity_KEY()
 	{
 		if(Key1_State(1) == KEY_PRESS)
 		{
-			task_beep_flag = 1;
+			BEEP_ON();
+			osDelay(100);
+			BEEP_OFF();
+			osDelay(100);
 			USART1_Send_ArrayU8(TXbuff,sizeof(TXbuff));
 			USART1_Send_ArrayU8(TXbuff,5);
 			count++;
@@ -113,20 +115,8 @@ void Task_Entity_KEY()
 void Task_Entity_Usart_RX()
 {
 		uint8_t ch = 0;
-		HAL_UART_Receive_IT(&huart1, (uint8_t *)&ch, 1);
-//	static uint8_t ch =0;
-//	//void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart);
-//	HAL_UART_Receive(&huart1, (uint8_t *)&ch, 1, HAL_MAX_DELAY);
-//	//HAL_UART_Transmit_IT(&huart1, (uint8_t *)&ch, 1);
-//		if(ch == '0')
-//		{
-//			LED_OFF();
-//		}
-//		else if(ch == '1')
-//		{
-//			LED_ON();
-//		}
-//		osDelay(10);
+		HAL_UART_Receive_IT(&huart1, (uint8_t *)&ch, 1);    //中斷處理 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+
 }
 
 void Task_Entity_MPU()
@@ -134,8 +124,8 @@ void Task_Entity_MPU()
 
 	MPU9250_Read_Data_Handle();
 
-	Bsp_Led_Show_State_Handle();
-	// The buzzer automatically shuts down when times out   蜂鸣器超时自动关闭
-	Beep_Timeout_Close_Handle();
+//	Bsp_Led_Show_State_Handle();
+//	// The buzzer automatically shuts down when times out   蜂鸣器超时自动关闭
+//	Beep_Timeout_Close_Handle();
 	osDelay(10);
 }

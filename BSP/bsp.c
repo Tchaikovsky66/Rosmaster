@@ -18,7 +18,7 @@
 #include "beep/beep.h"
 #include "LED/led.h"
 #include "mpu9250.h"
-
+#include "motor.h"
 
 /* bsp初始化 */
 void bsp_init()
@@ -29,6 +29,7 @@ void bsp_init()
 	LED_OFF();
 	BEEP_OFF();
 	USART1_Init();
+	Motor_Init();
 
 	if(MPU9250_Init() != 0)
 	{
@@ -128,4 +129,42 @@ void Task_Entity_MPU()
 //	// The buzzer automatically shuts down when times out   蜂鸣器超时自动关闭
 //	Beep_Timeout_Close_Handle();
 	osDelay(10);
+}
+
+void Motor_Test(void)
+{
+	if (Key1_State(KEY_MODE_ONE_TIME))
+		{
+			Beep_On_Time(50);
+			static int state = 0;
+			state++;
+			int speed = 0;
+			if (state == 1)
+			{
+				speed = 2000;
+
+			}
+			if (state == 2)
+			{
+				Motor_Stop(0);
+			}
+			if (state == 3)
+			{
+				speed = -2000;
+				Motor_Set_Pwm(MOTOR_ID_M1, speed);
+
+			}
+			if (state == 4)
+			{
+				state = 0;
+				Motor_Stop(1);
+			}
+
+			Motor_Set_Pwm(MOTOR_ID_M1, speed);
+			printf("state = %d, speed = %d\n",state,speed);
+		}
+
+		Bsp_Led_Show_State_Handle();
+		Beep_Timeout_Close_Handle();
+		HAL_Delay(10);
 }

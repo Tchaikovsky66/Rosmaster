@@ -23,12 +23,16 @@
 
 #include "stm32f1xx_hal.h"
 #include "stm32f103xe.h"
+
+#include "tim.h"
 /* Import device driver library  导入设备驱动库 */
 #include "mpuiic.h"
 #include "mpu9250.h"
 #include "key1.h"
 #include "bsp_uart.h"
+#include "motor.h"
 
+#include "stdio.h"
 
 
 void bsp_loop();
@@ -39,6 +43,6 @@ void Task_Entity_BEEP();
 void Task_Entity_KEY();
 void Task_Entity_Usart_RX();
 void Task_Entity_MPU();
-
+void Motor_Test(void);
 
 #endif /* SRC_BSP_HPP_ */

@@ -18,7 +18,6 @@
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
-#include <bsp.h>
 #include "FreeRTOS.h"
 #include "task.h"
 #include "main.h"
@@ -137,8 +136,8 @@ void StartDefaultTask(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-	  Task_Entity_MPU();
-
+	  //Task_Entity_MPU();
+	  Motor_Test();
     osDelay(1);
   }
   /* USER CODE END StartDefaultTask */
@@ -158,7 +157,7 @@ void StartTask_KEY(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-	  Task_Entity_KEY();
+	  //Task_Entity_KEY();
 	  osDelay(1);
   }
   /* USER CODE END StartTask_KEY */

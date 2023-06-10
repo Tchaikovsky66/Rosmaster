@@ -19,6 +19,7 @@
 #include "mpu9250.h"
 #include "motor.h"
 
+
 /* bsp初始化 */
 void bsp_init()
 {
@@ -30,6 +31,8 @@ void bsp_init()
 	USART1_Init();
 	Motor_Init();
 	Encoder_Init();
+	Encoder_Init();
+	PID_Param_Init();
 
 	if(MPU9250_Init() != 0)
 	{
@@ -40,17 +43,32 @@ void bsp_init()
 
 }
 
+int car_state = 0;
+
 void bsp_loop()
 {
 
-	if(Key1_State(1))
-	{
-		Beep_On_Time(500);
+	Motion_Handle();
 
-	}
-	Beep_Timeout_Close_Handle();
-	Led_status_handle();
-	HAL_Delay(10);
+		if (Key1_State(1))
+		{
+
+			Beep_On_Time(50);
+			if (car_state == 0)
+			{
+				Motion_Ctrl(0, 0, 500);
+				car_state = 1;
+
+			}
+			else
+			{
+				Motion_Stop(STOP_BRAKE);
+				car_state = 0;
+			}
+		}
+		Bsp_Led_Show_State_Handle();
+		Beep_Timeout_Close_Handle();
+		HAL_Delay(10);
 }
 
 void Bsp_Led_Show_State_Handle(void)
@@ -133,43 +151,45 @@ void Task_Entity_MPU()
 
 int encoder[4] = {0};
 int show_encoder = 0;
+
+/* 输出编码器值 */
 void Motor_Test(void)
 {
 
-	// Detect button down events   检测按键按下事件
-	if (Key1_State(KEY_MODE_ONE_TIME))
-	{
-		Beep_On_Time(50);
-//		Encoder_Turn(5);
-		static int state = 0;
-		state++;
-		int speed = 0;
-		if (state == 1)
-		{
-			speed = 1000;
-			Motor_Set_Pwm(MOTOR_ID_M1, speed);
-			Motor_Set_Pwm(MOTOR_ID_M2, speed);
-			Motor_Set_Pwm(MOTOR_ID_M3, speed);
-			Motor_Set_Pwm(MOTOR_ID_M4, speed);
-		}
-		if (state == 2)
-		{
-			Motor_Stop(0);
-		}
-		if (state == 3)
-		{
-			speed = -1000;
-			Motor_Set_Pwm(MOTOR_ID_M1, speed);
-			Motor_Set_Pwm(MOTOR_ID_M2, speed);
-			Motor_Set_Pwm(MOTOR_ID_M3, speed);
-			Motor_Set_Pwm(MOTOR_ID_M4, speed);
-		}
-		if (state == 4)
-		{
-			state = 0;
-			Motor_Stop(1);
-		}
-	}
+//	// Detect button down events   检测按键按下事件
+//	if (Key1_State(KEY_MODE_ONE_TIME))
+//	{
+//		Beep_On_Time(50);
+////		Encoder_Turn(5);
+//		static int state = 0;
+//		state++;
+//		int speed = 0;
+//		if (state == 1)
+//		{
+//			speed = 1000;
+//			Motor_Set_Pwm(MOTOR_ID_M1, speed);
+//			Motor_Set_Pwm(MOTOR_ID_M2, speed);
+//			Motor_Set_Pwm(MOTOR_ID_M3, speed);
+//			Motor_Set_Pwm(MOTOR_ID_M4, speed);
+//		}
+//		if (state == 2)
+//		{
+//			Motor_Stop(0);
+//		}
+//		if (state == 3)
+//		{
+//			speed = -1000;
+//			Motor_Set_Pwm(MOTOR_ID_M1, speed);
+//			Motor_Set_Pwm(MOTOR_ID_M2, speed);
+//			Motor_Set_Pwm(MOTOR_ID_M3, speed);
+//			Motor_Set_Pwm(MOTOR_ID_M4, speed);
+//		}
+//		if (state == 4)
+//		{
+//			state = 0;
+//			Motor_Stop(1);
+//		}
+//	}
 
 	show_encoder++;
 	if (show_encoder > 10)
@@ -179,8 +199,8 @@ void Motor_Test(void)
 		printf("Encoder:%d, %d, %d, %d\n", encoder[0], encoder[1], encoder[2], encoder[3]);
 	}
 
-	Encoder_Update_Count();
-	Bsp_Led_Show_State_Handle();
-	Beep_Timeout_Close_Handle();
+//	Encoder_Update_Count();
+//	Bsp_Led_Show_State_Handle();
+//	Beep_Timeout_Close_Handle();
 	HAL_Delay(10);
 }

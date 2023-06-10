@@ -32,6 +32,8 @@
 #include "bsp_uart.h"
 #include "motor.h"
 #include "encoder.h"
+#include "motor_pid.h"
+#include "motion.h"
 
 #include "stdio.h"
 

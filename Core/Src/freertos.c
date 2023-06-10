@@ -137,7 +137,9 @@ void StartDefaultTask(void const * argument)
   for(;;)
   {
 	  //Task_Entity_MPU();
-	  Motor_Test();
+	  bsp_loop();
+
+
     osDelay(1);
   }
   /* USER CODE END StartDefaultTask */
@@ -158,6 +160,7 @@ void StartTask_KEY(void const * argument)
   for(;;)
   {
 	  //Task_Entity_KEY();
+	  Motor_Test();
 	  osDelay(1);
   }
   /* USER CODE END StartTask_KEY */

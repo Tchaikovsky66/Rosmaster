@@ -31,6 +31,7 @@
 #include "key1.h"
 #include "bsp_uart.h"
 #include "motor.h"
+#include "encoder.h"
 
 #include "stdio.h"
 

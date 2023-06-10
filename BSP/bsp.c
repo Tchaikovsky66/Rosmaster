@@ -5,7 +5,6 @@
  *      Author: Shiwe
  */
 #include "bsp.h"
-
 #include "key1.h"
 #include "bsp_uart.h"
 #include "cmsis_os.h"
@@ -30,6 +29,7 @@ void bsp_init()
 	BEEP_OFF();
 	USART1_Init();
 	Motor_Init();
+	Encoder_Init();
 
 	if(MPU9250_Init() != 0)
 	{
@@ -131,40 +131,56 @@ void Task_Entity_MPU()
 	osDelay(10);
 }
 
+int encoder[4] = {0};
+int show_encoder = 0;
 void Motor_Test(void)
 {
+
+	// Detect button down events   检测按键按下事件
 	if (Key1_State(KEY_MODE_ONE_TIME))
+	{
+		Beep_On_Time(50);
+//		Encoder_Turn(5);
+		static int state = 0;
+		state++;
+		int speed = 0;
+		if (state == 1)
 		{
-			Beep_On_Time(50);
-			static int state = 0;
-			state++;
-			int speed = 0;
-			if (state == 1)
-			{
-				speed = 2000;
-
-			}
-			if (state == 2)
-			{
-				Motor_Stop(0);
-			}
-			if (state == 3)
-			{
-				speed = -2000;
-				Motor_Set_Pwm(MOTOR_ID_M1, speed);
-
-			}
-			if (state == 4)
-			{
-				state = 0;
-				Motor_Stop(1);
-			}
-
+			speed = 1000;
 			Motor_Set_Pwm(MOTOR_ID_M1, speed);
-			printf("state = %d, speed = %d\n",state,speed);
+			Motor_Set_Pwm(MOTOR_ID_M2, speed);
+			Motor_Set_Pwm(MOTOR_ID_M3, speed);
+			Motor_Set_Pwm(MOTOR_ID_M4, speed);
 		}
+		if (state == 2)
+		{
+			Motor_Stop(0);
+		}
+		if (state == 3)
+		{
+			speed = -1000;
+			Motor_Set_Pwm(MOTOR_ID_M1, speed);
+			Motor_Set_Pwm(MOTOR_ID_M2, speed);
+			Motor_Set_Pwm(MOTOR_ID_M3, speed);
+			Motor_Set_Pwm(MOTOR_ID_M4, speed);
+		}
+		if (state == 4)
+		{
+			state = 0;
+			Motor_Stop(1);
+		}
+	}
 
-		Bsp_Led_Show_State_Handle();
-		Beep_Timeout_Close_Handle();
-		HAL_Delay(10);
+	show_encoder++;
+	if (show_encoder > 10)
+	{
+		show_encoder = 0;
+		Encoder_Get_ALL(encoder);
+		printf("Encoder:%d, %d, %d, %d\n", encoder[0], encoder[1], encoder[2], encoder[3]);
+	}
+
+	Encoder_Update_Count();
+	Bsp_Led_Show_State_Handle();
+	Beep_Timeout_Close_Handle();
+	HAL_Delay(10);
 }

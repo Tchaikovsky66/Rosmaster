@@ -40,6 +40,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Rosmsater/BSP/UART}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Rosmsater/BSP/MPU}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Rosmsater/BSP/MOTOR}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Rosmsater/BSP/ENCODER}&quot;"/>
 								</option>
 								<inputType id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.assembler.input.361426192" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.assembler.input"/>
 							</tool>
@@ -67,6 +68,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Rosmsater/BSP/UART}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Rosmsater/BSP/MPU}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Rosmsater/BSP/MOTOR}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Rosmsater/BSP/ENCODER}&quot;"/>
 								</option>
 								<inputType id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c.1366944359" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c"/>
 							</tool>
@@ -165,6 +167,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Rosmsater/BSP/UART}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Rosmsater/BSP/MPU}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Rosmsater/BSP/MOTOR}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Rosmsater/BSP/ENCODER}&quot;"/>
 								</option>
 								<inputType id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.assembler.input.511400582" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.assembler.input"/>
 							</tool>
@@ -191,6 +194,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Rosmsater/BSP/UART}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Rosmsater/BSP/MPU}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Rosmsater/BSP/MOTOR}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Rosmsater/BSP/ENCODER}&quot;"/>
 								</option>
 								<inputType id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c.638029322" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c"/>
 							</tool>
